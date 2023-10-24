@@ -38,8 +38,9 @@ def dispositivos(request, pk):
         if form.is_valid():
             dispositivo = form.save()
             usuario.dispositivos.add(dispositivo)
-            log(request, f'NUEVO DISPOSITIVO: {dispositivo} | PARA: {usuario}')
             usuario.save()
+            log(request, f'NUEVO DISPOSITIVO: {dispositivo} | PARA: {usuario}')
+            form  = DispositivoForm(None)
 
     return render(request, 'dispositvios.html', context={"usuario_id": usuario.id,'dispositivos': dispositivos, 'form':form})
 
