@@ -1,0 +1,23 @@
+[
+    {
+      "model": "forms.TipoDispositivo",
+      "pk": 1,
+      "fields": {
+        "tipo": "Impresora"
+      }
+    },
+    {
+        "model": "forms.TipoDispositivo",
+        "pk": 2,
+        "fields": {
+          "tipo": "Escáner"
+        }
+    },
+    {
+        "model": "forms.TipoDispositivo",
+        "pk": 3,
+        "fields": {
+          "tipo": "Cámara"
+        }
+    }
+]

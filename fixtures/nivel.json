@@ -1,0 +1,31 @@
+[
+    {
+      "model": "forms.Nivel",
+      "pk": 1,
+      "fields": {
+        "tipo": "Niguno"
+      }
+    },
+    {
+        "model": "forms.Nivel",
+        "pk": 2,
+        "fields": {
+          "tipo": "Basico"
+        }
+    },
+    {
+        "model": "forms.Nivel",
+        "pk": 3,
+        "fields": {
+          "tipo": "Medio"
+        }
+    },
+    {
+        "model": "forms.Nivel",
+        "pk": 4,
+        "fields": {
+          "tipo": "Alto"
+        }
+    }
+
+]

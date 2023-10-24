@@ -1,0 +1,72 @@
+[
+    {
+      "model": "forms.Ofimatica",
+      "pk": 1,
+      "fields": {
+        "nombre": "Microsoft Office"
+      }
+    },
+    {
+        "model": "forms.Ofimatica",
+        "pk": 2,
+        "fields": {
+          "nombre": "LibreOffice"
+        }
+    },
+    {
+        "model": "forms.Ofimatica",
+        "pk": 3,
+        "fields": {
+          "nombre": "Google Workspace"
+        }
+    },
+    {
+        "model": "forms.Ofimatica",
+        "pk": 4,
+        "fields": {
+          "nombre": "WPS Office"
+        }
+    },
+    {
+        "model": "forms.Ofimatica",
+        "pk": 5,
+        "fields": {
+          "nombre": "Google Workspace"
+        }
+    },
+    {
+        "model": "forms.Ofimatica",
+        "pk": 6,
+        "fields": {
+          "nombre": "Calligra Office"
+        }
+    },
+    {
+        "model": "forms.Ofimatica",
+        "pk": 7,
+        "fields": {
+          "nombre": "Apple iWork"
+        }
+    },
+    {
+        "model": "forms.Ofimatica",
+        "pk": 8,
+        "fields": {
+          "nombre": "Apache OpenOffice"
+        }
+    },
+    {
+        "model": "forms.Ofimatica",
+        "pk": 9,
+        "fields": {
+          "nombre": "OfficeSuite"
+        }
+    },
+    {
+        "model": "forms.Ofimatica",
+        "pk": 10,
+        "fields": {
+          "nombre": "Polaris Office"
+        }
+    }
+]

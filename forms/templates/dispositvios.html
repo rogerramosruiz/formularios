@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="flex items-center justify-center my-10">
+    <div class="w-full md:w-10/12">
+        <div class="w-full relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <tr>
+                    <th scope="col"> Tipo Dispositvo</a></th>
+                    <th scope="col"> Descripcion</th>
+                    <th scope="col"> año fabricacion</th>
+                </tr>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dispositivo in dispositivos %}
+            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                <td class="px-5">
+                    {{dispositivo.tipo}}
+                </td>
+                <td>
+                    {{dispositivo.descripcion}}
+                </td>
+                <td>
+                    {{dispositivo.fecha_fabricacion}}
+                </td>
+                <td>
+                    <a href="{% url 'deletedispositivo' usuario_id dispositivo.id %}">
+                        <button class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center">Eliminar</button>
+                    </a>
+                </div>
+
+                </td>
+            </tr>            
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+    </div>
+</div>
+<div class="w-10/12 lg:w-1/3 bg-white shadow-md rounded px-8 pt-6 pb-8 m-4">
+    <div class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-3xl ">
+        Añadir dispositvo
+    </div>
+    <form method="post" >
+        {% csrf_token %}
+        <div class=" m-2 ">
+            {{ form.as_p }}
+        </div>
+        
+        <input class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-5" 
+        type="submit" value="Agregar dispositivo"> 
+        
+    </form>
+</div>
+
+
+<a href="{% url 'home' %}" class="px-8 pt-6 m-4">
+    <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Volver</button>
+</a>
+{% endblock %}

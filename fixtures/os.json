@@ -1,0 +1,142 @@
+[
+    {
+      "model": "forms.SitemaOperativo",
+      "pk": 1,
+      "fields": {
+        "nombre": "Windows 11"
+      }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 2,
+        "fields": {
+          "nombre": "Windows 10"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 3,
+        "fields": {
+          "nombre": "Windows 7"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 4,
+        "fields": {
+          "nombre": "Windows 8"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 5,
+        "fields": {
+          "nombre": "Windows 8.1"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 6,
+        "fields": {
+          "nombre": "Windows Vista"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 7,
+        "fields": {
+          "nombre": "Windows XP"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 8,
+        "fields": {
+          "nombre": "Ubuntu"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 9,
+        "fields": {
+          "nombre": "Debian"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 10,
+        "fields": {
+          "nombre": "Gentoo"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 11,
+        "fields": {
+          "nombre": "Fedora"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 12,
+        "fields": {
+          "nombre": "OpenSUSE"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 13,
+        "fields": {
+          "nombre": "Elementary OS"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 14,
+        "fields": {
+          "nombre": "Linux Mint"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 15,
+        "fields": {
+          "nombre": "Arch Linux"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 16,
+        "fields": {
+          "nombre": "Manjaro"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 17,
+        "fields": {
+          "nombre": "Lubuntu"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 18,
+        "fields": {
+          "nombre": "Peppermint OS"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 19,
+        "fields": {
+          "nombre": "Zorin OS"
+        }
+    },
+    {
+        "model": "forms.SitemaOperativo",
+        "pk": 20,
+        "fields": {
+          "nombre": "Navy Linux"
+        }
+    }
+]
