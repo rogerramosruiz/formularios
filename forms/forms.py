@@ -3,7 +3,7 @@ from .models import Usuario, Encuesta, TipoDispositivo, Dispositivo, Nivel, Ofim
 
 class UsuarioForm(forms.ModelForm):
     nombre = forms.CharField(label="Nombre completo", widget=forms.widgets.TextInput(
-    attrs={"placeholder": "Juan Perez Perez", "class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700", "disabled":"disabled"}))
+    attrs={"placeholder": "Juan Perez Perez", "class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700", }))
     carnet = forms.CharField(max_length=10, widget=forms.widgets.NumberInput(attrs={"placeholder": "123456789", "class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
     extension = forms.CharField(max_length=5, label="Extension",widget=forms.widgets.TextInput(attrs={"placeholder": "LP", "class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
 
@@ -11,11 +11,13 @@ class UsuarioForm(forms.ModelForm):
         model = Usuario
         fields = ('nombre', 'carnet', 'extension') 
 
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nombre'].widget.attrs['readonly'] = True
 
 class DispositivoForm(forms.ModelForm):
     tipo = forms.ModelChoiceField(queryset=TipoDispositivo.objects.all(), widget=forms.Select(attrs={'class': 'text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center'}))
-    descripcion = forms.CharField(max_length=500, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
+    descripcion = forms.CharField(max_length=50, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
     fecha_fabricacion = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date', 
         "class": "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"}))
     

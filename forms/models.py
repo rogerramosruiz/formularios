@@ -21,10 +21,10 @@ class TipoDispositivo(models.Model):
     
 class Dispositivo(models.Model):
     tipo = models.ForeignKey(TipoDispositivo, on_delete=models.CASCADE)
-    descripcion = models.CharField(max_length=10)
+    descripcion = models.CharField(max_length=50)
     fecha_fabricacion = models.DateField()
     def __str__(self) -> str:
-        return f'{self.tipo} {self.descripcion} {self.fecha_fabricacion}'
+        return f'{self.id} {self.tipo} {self.descripcion} {self.fecha_fabricacion}'
 
 class Nivel(models.Model):
     #    ninguno/básico/medio/alto
@@ -55,12 +55,14 @@ class Encuesta(models.Model):
     
     sistema_operativo = models.ForeignKey(SitemaOperativo, on_delete=models.CASCADE)
 
-
+    def __str__(self) -> str:
+        return f'{self.id} {self.descripcion_caracteristicas} {self.otros} {self.software_libre} {self.estandares_abiertos} {self.ofimatica} {self.sistema_operativo}'
+    
 class Usuario(models.Model):
     nombre = models.CharField(max_length=100)
     codigo = models.IntegerField()
-    carnet = models.CharField(max_length=20)
-    extension = models.CharField(max_length=2, blank=True)
+    carnet = models.CharField(max_length=10)
+    extension = models.CharField(max_length=5, blank=True)
     
     cargo = models.ForeignKey(Cargo, on_delete=models.CASCADE)
     encuesta = models.ForeignKey(Encuesta, on_delete=models.CASCADE, blank=True, null=True)
@@ -68,5 +70,5 @@ class Usuario(models.Model):
     dispositivos = models.ManyToManyField(Dispositivo, blank=True)
     
     def __str__(self) -> str:
-        return f'{self.nombre} {self.cargo} {self.carnet} {self.extension}'
+        return f'{self.id} {self.nombre} {self.cargo} {self.carnet} {self.extension}'
     
