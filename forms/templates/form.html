@@ -1,0 +1,15 @@
+<div class="w-10/12 bg-white shadow-md rounded px-8 pt-6 pb-8 m-4">
+    <form method="post" >
+        {% csrf_token %}
+        <div class=" m-2 ">
+            {{ form.as_p }}
+        </div>
+        
+        <input class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-5" 
+        type="submit" value="Guardar"> 
+        
+    </form>
+    <a href="{% url 'home' %}">
+        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Volver</button>
+    </a>
+</div>

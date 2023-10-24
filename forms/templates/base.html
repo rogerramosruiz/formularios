@@ -6,8 +6,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Encuesta PISLEA  </title>
 </head>
-<body class="m-5">
+<body class="m-2">
+    {% if user.is_authenticated %}
+    <div class="dark:bg-gray-800 text-white py-2">
+        <div class="container mx-auto flex justify-end">
+            <a href="{% url 'logout' %}"> <Button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Cerrar Secion</Button></a>
+        </div>
+      </div>
+    {% endif %}
+
     {% block content %}
     {% endblock %}
+
 </body>
 </html>
