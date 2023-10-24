@@ -21,9 +21,10 @@ def editar_usuario(request, pk):
     usuario = Usuario.objects.get(pk = pk)
     form = UsuarioForm(request.POST or None, instance = usuario)
     if request.method == 'POST':
-            form.save()
-            return redirect('home')
-    
+            if form.is_valid():
+                form.save()
+                return redirect('home')
+
     return render(request, 'editarUsuario.html', context={'form': form})
 
 @login_required()
