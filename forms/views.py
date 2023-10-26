@@ -11,6 +11,7 @@ def listar_personal(request):
     query = request.GET.get('query')
     usuarios = Usuario.objects.all()
     if query:
+        query = query.strip()
         usuarios = Usuario.objects.filter(nombre__icontains=query)
     usuarios = usuarios[0:20]
     usuarios_dic = []
@@ -26,7 +27,7 @@ def listar_personal(request):
         data['encuesta'] = i.encuesta
         data['numdisp'] = len(i.dispositivos.all())
         usuarios_dic.append(data)
-        
+
     return render(request, 'listar_u.html', context={'usuarios': usuarios_dic})
 
 @login_required()
