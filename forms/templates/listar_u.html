@@ -2,7 +2,7 @@
 {% block content %}
 
 
-<div class="mx-52 md:mx-40 w-11/12 md:w-8/12 pb-8">
+<div class="mx-0 md:mx-40 w-11/12 md:w-8/12 pb-8">
     <form method="get" action="">
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Buscar</label>
         <div class="relative">
@@ -18,17 +18,17 @@
     </form>
 </div>
 
-<div class="flex items-center justify-center ">
-    <div class="md:w-8/12">
+<div class="flex items-center justify-center">
+    <div class="w-full md:w-8/12">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left text-gray-500">
+        <table class="w-full text-sm text-center text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
                 <tr>
                     <th scope="col">Codigo</th>
                     <th scope="col">Nombre Completo</th>
-                    <th scope="col">carnet</th>
-                    <th scope="col">Cargo</th>
+                    <th scope="col">Carnet</th>
+                    <th scope="col">Extension</th>
                     <th scope="col">Accion</th>
                 </tr>
             </tr>
@@ -36,23 +36,22 @@
         <tbody>
             {% for usuario in usuarios %}
             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <td>
+                <td class="p-0">
                     {{usuario.codigo}}
                 </td>
-                <td>
+                <td class="text-left">
                     {{usuario.nombre}}
                 </td>
                 <td>
                     {{usuario.carnet}}
+                </td>
+                <td>
                     {{usuario.extension}}
                 </td>
                 <td>
-                    {{usuario.cargo}}
-                </td>
-                <td>
-                    <div >
+                    <div>
                         <a href="{% url 'encuesta' usuario.id %}">
-                            <button class="text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center">
+                            <button class="text-white {%if usuario.encuesta%} bg-orange-500 hover:bg-orange-600 {% else %} bg-blue-500 hover:bg-blue-600 {% endif %} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center">
                                 Encuesta
                             </button>
                         </a>
@@ -63,7 +62,7 @@
                         </a>
                         <a href="{% url 'dispositivos' usuario.id %}">
                             <button class="text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center">
-                                Dispositivos
+                                {{ usuario.numdisp }} Dispositivos 
                             </button>
                         </a>
                     </div>

@@ -13,7 +13,21 @@ def listar_personal(request):
     if query:
         usuarios = Usuario.objects.filter(nombre__icontains=query)
     usuarios = usuarios[0:20]
-    return render(request, 'listar_u.html', context={'usuarios': usuarios})
+    usuarios_dic = []
+    for i in usuarios:
+        data = {}
+        data['id'] = i.id
+        data['nombre'] = i.nombre
+        data['codigo'] = i.codigo
+        data['carnet'] = i.carnet
+        data['extension'] = i.extension
+        data['cargo'] = i.cargo
+        data['unidad'] = i.unidad
+        data['encuesta'] = i.encuesta
+        data['numdisp'] = len(i.dispositivos.all())
+        usuarios_dic.append(data)
+        
+    return render(request, 'listar_u.html', context={'usuarios': usuarios_dic})
 
 @login_required()
 def editar_usuario(request, pk):
