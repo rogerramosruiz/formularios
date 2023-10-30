@@ -1,4 +1,6 @@
 import logging
+from .models import Log
+from datetime import datetime
 
 logging.basicConfig(filename='logs.log', encoding='utf-8', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
@@ -11,7 +13,23 @@ def ipaddress(request):
     return request.META.get('REMOTE_ADDR')
 
 
-def log(request, message):
-    loged_user = request.user.username
+def logger(request, usuario, accion, messagedb, messagetxt):
+    loged_user = request.user
     ip = ipaddress(request)
-    logging.info(f'{ip} {loged_user} {message}')
+
+    log_db(ip, loged_user, usuario, accion, messagedb)
+    log_txt(ip, loged_user.username, accion, messagetxt)
+
+def log_db(ip, loged_user, usuario, accion, message):
+    log = Log()
+    log.user = loged_user
+    log.usuarrio = usuario
+    log.ip = ip
+    log.accion = accion
+    log.descripcion = message
+    log.time_stamp = datetime.now()
+    log.save()
+
+
+def log_txt(ip, loged_user, accion, message):
+    logging.info(f'{ip} {loged_user} {accion} {message}')

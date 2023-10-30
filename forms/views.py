@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Usuario, Dispositivo
+from .models import Usuario, Dispositivo, Log
 from .forms import UsuarioForm, DispositivoForm, EncuestaForm
 from django.contrib.auth.decorators import login_required
-from .utils import log
+from .utils import logger
 import copy
+
 
 # Create your views here.
 @login_required()
@@ -38,7 +39,7 @@ def editar_usuario(request, pk):
     if request.method == 'POST':
             if form.is_valid():                
                 edited_user = form.save()
-                log(request, f'USUARIO EDITADO | ANTES: {usuario_before} | DESPUES: {edited_user}')
+                logger(request,accion="USUARIO EDITADO",usuario = edited_user, messagedb= f'ANTES: {usuario_before}', messagetxt=f'USUARIO EDITADO | ANTES: {usuario_before} | DESPUES: {edited_user}')
                 return redirect('home')
 
     return render(request, 'editarUsuario.html', context={'form': form})
@@ -54,7 +55,7 @@ def dispositivos(request, pk):
             dispositivo = form.save()
             usuario.dispositivos.add(dispositivo)
             usuario.save()
-            log(request, f'NUEVO DISPOSITIVO: {dispositivo} | PARA: {usuario}')
+            logger(request,accion="NUEVO DISPOSITIVO:",usuario = usuario, messagedb= f'NUEVO DISPOSITIVO: {dispositivo}', messagetxt=f'NUEVO DISPOSITIVO: {dispositivo}')
             form  = DispositivoForm(None)
 
     return render(request, 'dispositvios.html', context={"usuario_id": usuario.id,'dispositivos': dispositivos, 'form':form})
@@ -65,7 +66,7 @@ def removeDispositivo(request, upk, dpk):
     dispositivo = Dispositivo.objects.get(pk = dpk)
     usuario.dispositivos.remove(dispositivo)
     usuario.save()
-    log(request, f'DISPOSITIVO BORRADO: {dispositivo} | DE: {usuario.id} {usuario.nombre}')
+    logger(request, accion="DISPOSITIVO BORRADO:", usuario = usuario, messagedb= f'{dispositivo}', messagetxt=f'DISPOSITIVO BORRADO: {dispositivo} | DE: {usuario.id} {usuario.nombre}')
     return redirect('dispositivos', pk= upk)
 
 @login_required()
@@ -80,7 +81,7 @@ def encuesta(request, pk):
                 encuesta = form.save()
                 usuario.encuesta = encuesta
                 usuario.save()
-                log(request, f'ENCUESTA LLENADA: {encuesta} |PARA {usuario.id} {usuario.nombre}')
+                logger(request, accion="ENCUESTA LLENADA:", usuario = usuario, messagedb= f'{encuesta}', messagetxt=f'ENCUESTA LLENADA: {encuesta} |PARA {usuario.id} {usuario.nombre}')
                 return redirect('home')
-        
+                    
     return render(request, 'encuesta.html', context={'form':form})
