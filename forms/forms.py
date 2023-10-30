@@ -1,15 +1,17 @@
 from django import forms
-from .models import Usuario, Encuesta, TipoDispositivo, Dispositivo, Nivel, Ofimatica, SitemaOperativo
+from .models import Usuario, Encuesta, TipoDispositivo, Dispositivo, Nivel, Ofimatica, SitemaOperativo, Unidad, Edificio, Cargo
 
 class UsuarioForm(forms.ModelForm):
     nombre = forms.CharField(label="Nombre completo", widget=forms.widgets.TextInput(
     attrs={"placeholder": "Juan Perez Perez", "class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700", }))
     carnet = forms.CharField(max_length=10, widget=forms.widgets.NumberInput(attrs={"placeholder": "123456789", "class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
     extension = forms.CharField(max_length=5, label="Extension",widget=forms.widgets.TextInput(attrs={"placeholder": "LP", "class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
-
+    unidad  = forms.ModelChoiceField(queryset=Unidad.objects.all(), widget=forms.Select(attrs={'class': 'text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-0 py-2.5 text-center inline-flex items-center'}))
+    edificio  = forms.ModelChoiceField(queryset=Edificio.objects.all(), widget=forms.Select(attrs={'class': 'text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center'}))
+    cargo = forms.ModelChoiceField(queryset=Cargo.objects.all(), widget=forms.Select(attrs={'class': 'text-white bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-0 py-2.5 text-center inline-flex items-center'}))
     class Meta:
         model = Usuario
-        fields = ('nombre', 'carnet', 'extension') 
+        fields = ('nombre', 'carnet', 'extension', 'unidad', 'edificio', 'cargo') 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

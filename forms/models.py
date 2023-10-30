@@ -44,6 +44,11 @@ class Unidad(models.Model):
     def __str__(self) -> str:
         return self.nombre
 
+class Edificio(models.Model):
+    nombre = models.CharField(max_length=150)
+    def __str__(self) -> str:
+        return self.nombre
+
 class Encuesta(models.Model):
     descripcion_caracteristicas = models.CharField(max_length=500, blank=True)
     otros = models.CharField(max_length=50, blank=True)
@@ -68,6 +73,7 @@ class Usuario(models.Model):
     cargo = models.ForeignKey(Cargo, on_delete=models.CASCADE)
     encuesta = models.ForeignKey(Encuesta, on_delete=models.CASCADE, blank=True, null=True)
     unidad  = models.ForeignKey(Unidad, on_delete=models.CASCADE)
+    edificio = models.ForeignKey(Edificio, blank=True, null=True, on_delete=models.CASCADE)
     dispositivos = models.ManyToManyField(Dispositivo, blank=True)
     
     def __str__(self) -> str:
@@ -77,7 +83,6 @@ class Log(models.Model):
     user = models.ForeignKey(User, models.CASCADE)
     usuarrio = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     ip = models.CharField(max_length=15)
-    # ENCUESTA LLENADA, USUARIO EDITADO NUEVO DISPOSITIVO
     accion = models.CharField(max_length=25)
     descripcion = models.CharField(max_length=200)
     time_stamp = models.DateTimeField()

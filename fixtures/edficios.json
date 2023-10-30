@@ -1,0 +1,114 @@
+[
+    {
+      "model": "forms.Edificio",
+      "pk": 1,
+      "fields": {
+        "nombre": "EDIFICIO CENTRAL"
+      }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 2,
+        "fields": {
+          "nombre": "EDIFICIO VICTOR"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 3,
+        "fields": {
+          "nombre": "EDIFICIO INCHAUSTE"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 4,
+        "fields": {
+          "nombre": "EDIFICIO EX BANCO FASSIL"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 5,
+        "fields": {
+          "nombre": "EDIFICIO FABIANA"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 6,
+        "fields": {
+          "nombre": "EDIFICIO MARIA REYNA"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 7,
+        "fields": {
+          "nombre": "EDIFICIO CHUAQUIAGO"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 8,
+        "fields": {
+          "nombre": "EDIFICIO CAMARA DE COMERCIO"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 9,
+        "fields": {
+          "nombre": "EDIFICIO CASA JAUREGUI"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 10,
+        "fields": {
+          "nombre": "EDIFICIO GOUNGLASCH"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 11,
+        "fields": {
+          "nombre": "EDIFICIO CRISTO REY"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 12,
+        "fields": {
+          "nombre": "EDICIO LA ALBORADA"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 13,
+        "fields": {
+          "nombre": "EDIFICIO TORRE AZUL"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 14,
+        "fields": {
+          "nombre": "EDIFICIO LA LLAMITA"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 15,
+        "fields": {
+          "nombre": "EDIFICIO CAPITAN RAVELO"
+        }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 16,
+        "fields": {
+          "nombre": "EDIFICIO SMITH"
+        }
+    }
+]

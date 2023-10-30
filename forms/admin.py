@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SitemaOperativo, Ofimatica, TipoDispositivo, Dispositivo, Nivel, Cargo, Usuario, Encuesta, Unidad
+from .models import SitemaOperativo, Ofimatica, TipoDispositivo, Dispositivo, Nivel, Cargo, Usuario, Encuesta, Unidad, Edificio
 # Register your models here.
 
 admin.site.register(SitemaOperativo)
@@ -11,3 +11,4 @@ admin.site.register(Usuario)
 admin.site.register(Encuesta)
 admin.site.register(Nivel)
 admin.site.register(Unidad)
+admin.site.register(Edificio)
