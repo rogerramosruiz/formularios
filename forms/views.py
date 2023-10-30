@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Usuario, Dispositivo, Log
-from .forms import UsuarioForm, DispositivoForm, EncuestaForm
+from .models import Usuario, Dispositivo, Edificio
+from .forms import UsuarioForm, DispositivoForm, EncuestaForm, EdificioForm
 from django.contrib.auth.decorators import login_required
 from .utils import logger
 import copy
@@ -42,7 +42,7 @@ def editar_usuario(request, pk):
                 logger(request,accion="USUARIO EDITADO",usuario = edited_user, messagedb= f'ANTES: {usuario_before}', messagetxt=f'USUARIO EDITADO | ANTES: {usuario_before} | DESPUES: {edited_user}')
                 return redirect('home')
 
-    return render(request, 'editarUsuario.html', context={'form': form})
+    return render(request, 'editarUsuario.html', context={'form': form, "usid": pk})
 
 @login_required()
 def dispositivos(request, pk):
@@ -85,3 +85,21 @@ def encuesta(request, pk):
                 return redirect('home')
                     
     return render(request, 'encuesta.html', context={'form':form})
+
+@login_required()
+def addEdifcio(request):
+    next_p =  request.GET.get('next')
+    if next_p:
+        next_p = next_p.strip()
+    usid = int(next_p)
+    usuario = Usuario.objects.get(pk = usid)
+
+    form = EdificioForm(request.POST or None)
+    edificios = Edificio.objects.all()
+    if form.is_valid():
+        edifcio = form.save()
+        logger(request, accion="EDIFICIO AÑADIDO", usuario = usuario, messagedb= f'{edifcio}', messagetxt=f'EDIFICIO AÑADIDO {edifcio}')
+        return redirect('editar_usuario', pk= usid)
+        
+        
+    return render(request, "edificios.html", context={'form': form, 'edificios': edificios})

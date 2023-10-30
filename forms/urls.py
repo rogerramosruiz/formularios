@@ -7,4 +7,6 @@ urlpatterns = [
     path('dispositivos/<int:pk>', views.dispositivos, name='dispositivos'),
     path('deletedispositivo/<int:upk>/<int:dpk>', views.removeDispositivo, name='deletedispositivo'),
     path('encuesta/<int:pk>', views.encuesta, name='encuesta'),
+    path('edificio/', views.addEdifcio, name='edificio'),
+
 ]
