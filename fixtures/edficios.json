@@ -110,5 +110,12 @@
         "fields": {
           "nombre": "EDIFICIO SMITH"
         }
+    },
+    {
+        "model": "forms.Edificio",
+        "pk": 16,
+        "fields": {
+          "nombre": "EDIFICIO EMUSA"
+        }
     }
 ]
