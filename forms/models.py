@@ -89,7 +89,7 @@ class Usuario(models.Model):
 
 class Log(models.Model):
     user = models.ForeignKey(User, models.CASCADE)
-    usuarrio = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     ip = models.CharField(max_length=15)
     accion = models.CharField(max_length=25)
     descripcion = models.CharField(max_length=200)

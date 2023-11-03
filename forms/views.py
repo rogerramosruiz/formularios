@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Usuario, Dispositivo, Edificio
+from .models import Usuario, Dispositivo, Edificio, Log
 from .forms import UsuarioForm, DispositivoForm, EncuestaForm, EdificioForm
 from django.contrib.auth.decorators import login_required
 from .utils import logger
 import copy
-from datetime import datetime
+
 
 # Create your views here.
 @login_required()
@@ -55,7 +55,7 @@ def dispositivos(request, pk):
             dispositivo = form.save()
             usuario.dispositivos.add(dispositivo)
             usuario.save()
-            logger(request,accion="NUEVO DISPOSITIVO:",usuario = usuario, messagedb= f'NUEVO DISPOSITIVO: {dispositivo}', messagetxt=f'NUEVO DISPOSITIVO: {dispositivo}')
+            logger(request,accion="NUEVO DISPOSITIVO",usuario = usuario, messagedb= f'NUEVO DISPOSITIVO: {dispositivo}', messagetxt=f'NUEVO DISPOSITIVO: {dispositivo}')
             form  = DispositivoForm(None)
 
     return render(request, 'dispositvios.html', context={"usuario_id": usuario.id,'dispositivos': dispositivos, 'form':form})
@@ -82,7 +82,7 @@ def removeDispositivo(request, upk, dpk):
     dispositivo = Dispositivo.objects.get(pk = dpk)
     usuario.dispositivos.remove(dispositivo)
     usuario.save()
-    logger(request, accion="DISPOSITIVO BORRADO:", usuario = usuario, messagedb= f'{dispositivo}', messagetxt=f'DISPOSITIVO BORRADO: {dispositivo} | DE: {usuario.id} {usuario.nombre}')
+    logger(request, accion="DISPOSITIVO BORRADO", usuario = usuario, messagedb= f'{dispositivo}', messagetxt=f'DISPOSITIVO BORRADO: {dispositivo} | DE: {usuario.id} {usuario.nombre}')
     return redirect('dispositivos', pk= upk)
 
 @login_required()
@@ -97,7 +97,7 @@ def encuesta(request, pk):
                 encuesta = form.save()
                 usuario.encuesta = encuesta
                 usuario.save()
-                logger(request, accion="ENCUESTA LLENADA:", usuario = usuario, messagedb= f'{encuesta}', messagetxt=f'ENCUESTA LLENADA: {encuesta} |PARA {usuario.id} {usuario.nombre}')
+                logger(request, accion="ENCUESTA LLENADA", usuario = usuario, messagedb= f'{encuesta}', messagetxt=f'ENCUESTA LLENADA: {encuesta} |PARA {usuario.id} {usuario.nombre}')
                 return redirect('home')
 
     return render(request, 'encuesta.html', context={'form':form})
@@ -119,3 +119,9 @@ def addEdifcio(request):
 
 
     return render(request, "edificios.html", context={'form': form, 'edificios': edificios})
+
+@login_required
+def show_log(request):
+    loged_user = request.user
+    logs = Log.objects.filter(user = loged_user)
+    return render(request, "logs.html", context={"logs": logs})

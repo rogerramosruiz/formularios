@@ -14,6 +14,12 @@
     <img src='{% static "images/msdh.png" %}' style="height:80px;">
     <div class="dark:bg-gray-800 text-white">
         <div class="container mx-auto flex justify-end">
+            <a href="{%url 'progreso' %}" class="px-5">
+                <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded">
+                    Progreso
+                </button>
+            </a>
+
             <a href="{% url 'logout' %}"> <Button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                 Cerrar Secion</Button></a>
         </div>
