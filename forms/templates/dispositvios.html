@@ -31,6 +31,11 @@
                     <a href="{% url 'deletedispositivo' usuario_id dispositivo.id %}">
                         <button class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center">Eliminar</button>
                     </a>
+                    <a href="{% url 'editdispositivo' usuario_id dispositivo.id %}">
+                        <button class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center">
+                            Editar
+                        </button>
+                    </a>
                 </div>
 
                 </td>
@@ -48,6 +53,9 @@
     </div>
     {% include 'form.html' %}
 </div>
+<a href="{% url 'home' %}">
+    <button class="mx-10 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Volver</button>
+</a>
 
 
 {% endblock %}

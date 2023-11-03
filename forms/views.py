@@ -4,7 +4,7 @@ from .forms import UsuarioForm, DispositivoForm, EncuestaForm, EdificioForm
 from django.contrib.auth.decorators import login_required
 from .utils import logger
 import copy
-
+from datetime import datetime
 
 # Create your views here.
 @login_required()
@@ -37,7 +37,7 @@ def editar_usuario(request, pk):
     form = UsuarioForm(request.POST or None, instance = usuario)
     usuario_before = copy.copy(usuario)
     if request.method == 'POST':
-            if form.is_valid():                
+            if form.is_valid():
                 edited_user = form.save()
                 logger(request,accion="USUARIO EDITADO",usuario = edited_user, messagedb= f'ANTES: {usuario_before}', messagetxt=f'USUARIO EDITADO | ANTES: {usuario_before} | DESPUES: {edited_user}')
                 return redirect('home')
@@ -49,7 +49,7 @@ def dispositivos(request, pk):
     usuario = Usuario.objects.get(pk = pk)
     dispositivos = usuario.dispositivos.all()
     form = DispositivoForm(request.POST or None)
-    
+
     if request.method == 'POST':
         if form.is_valid():
             dispositivo = form.save()
@@ -59,6 +59,22 @@ def dispositivos(request, pk):
             form  = DispositivoForm(None)
 
     return render(request, 'dispositvios.html', context={"usuario_id": usuario.id,'dispositivos': dispositivos, 'form':form})
+
+@login_required()
+def editar_dispositivo(request, upk, dpk):
+    dispositivo = Dispositivo.objects.get(pk = dpk)
+    dispositivo.fecha_fabricacion = str(dispositivo.fecha_fabricacion)
+
+    form = DispositivoForm(request.POST or None, instance=dispositivo)
+    
+    if request.method == 'POST':
+        if form.is_valid():
+            dispositivo = form.save()
+            return redirect('dispositivos', pk= upk)
+            # logger(request,accion="NUEVO DISPOSITIVO:",usuario = usuario, messagedb= f'NUEVO DISPOSITIVO: {dispositivo}', messagetxt=f'NUEVO DISPOSITIVO: {dispositivo}')
+            # form  = DispositivoForm(None)
+
+    return render(request, 'editardispositivo.html', context={"usuario_id": upk,'form':form})
 
 @login_required()
 def removeDispositivo(request, upk, dpk):
@@ -74,7 +90,7 @@ def encuesta(request, pk):
     usuario = Usuario.objects.get(pk = pk)
     encuesta = usuario.encuesta
     form = EncuestaForm(request.POST or None, instance=encuesta)
-    
+
     if request.method == 'POST':
         if form.is_valid():
             if form.is_valid():
@@ -83,7 +99,7 @@ def encuesta(request, pk):
                 usuario.save()
                 logger(request, accion="ENCUESTA LLENADA:", usuario = usuario, messagedb= f'{encuesta}', messagetxt=f'ENCUESTA LLENADA: {encuesta} |PARA {usuario.id} {usuario.nombre}')
                 return redirect('home')
-                    
+
     return render(request, 'encuesta.html', context={'form':form})
 
 @login_required()
@@ -100,6 +116,6 @@ def addEdifcio(request):
         edifcio = form.save()
         logger(request, accion="EDIFICIO AÑADIDO", usuario = usuario, messagedb= f'{edifcio}', messagetxt=f'EDIFICIO AÑADIDO {edifcio}')
         return redirect('editar_usuario', pk= usid)
-        
-        
+
+
     return render(request, "edificios.html", context={'form': form, 'edificios': edificios})
