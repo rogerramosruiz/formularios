@@ -22,10 +22,10 @@ class TipoDispositivo(models.Model):
     
 class Dispositivo(models.Model):
     tipo = models.ForeignKey(TipoDispositivo, on_delete=models.CASCADE)
-    descripcion = models.CharField(max_length=50)
+    modelo = models.CharField(max_length=50)
     fecha_fabricacion = models.DateField()
     def __str__(self) -> str:
-        return f'{self.id} {self.tipo} {self.descripcion} {self.fecha_fabricacion}'
+        return f'{self.id} {self.tipo} {self.modelo} {self.fecha_fabricacion}'
 
 class Nivel(models.Model):
     #    ninguno/básico/medio/alto
