@@ -65,17 +65,17 @@ def dispositivos(request, pk):
 
 @login_required()
 def editar_dispositivo(request, upk, dpk):
+    usuario = Usuario.objects.get(pk = upk)
     dispositivo = Dispositivo.objects.get(pk = dpk)
     dispositivo.fecha_fabricacion = str(dispositivo.fecha_fabricacion)
-
+    dispositivo_before = copy.copy(dispositivo)
     form = DispositivoForm(request.POST or None, instance=dispositivo)
     
     if request.method == 'POST':
         if form.is_valid():
             dispositivo = form.save()
+            logger(request,accion="DISPOSITIVO EDITADO",usuario = usuario, messagedb= f'DISPOSITIVO ANTES: {dispositivo_before}', messagetxt=f'DISPOSITIVO ANTES:{dispositivo_before} | DISPOSITIVO AHORA:{dispositivo}')
             return redirect('dispositivos', pk= upk)
-            # logger(request,accion="NUEVO DISPOSITIVO:",usuario = usuario, messagedb= f'NUEVO DISPOSITIVO: {dispositivo}', messagetxt=f'NUEVO DISPOSITIVO: {dispositivo}')
-            # form  = DispositivoForm(None)
 
     return render(request, 'editardispositivo.html', context={"usuario_id": upk,'form':form})
 
@@ -125,7 +125,7 @@ def addEdifcio(request):
 
 @login_required
 def show_log(request):
-    items_per_page = 10
+    items_per_page = 20
     loged_user = request.user
     logs = Log.objects.filter(user = loged_user)
     paginator = Paginator(logs, items_per_page)
@@ -138,5 +138,3 @@ def show_log(request):
         current_page = paginator.get_page(paginator.num_pages)
     
     return render(request, 'logs.html', {'current_page': current_page})
-
-    #return render(request, "logs.html", context={"logs": logs})
