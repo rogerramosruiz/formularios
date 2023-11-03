@@ -60,7 +60,7 @@ class Encuesta(models.Model):
     ofimatica = models.ForeignKey(Ofimatica, on_delete=models.CASCADE)
     
     sistema_operativo = models.ForeignKey(SitemaOperativo, on_delete=models.CASCADE)
-    nombre_equpo = models.CharField(max_length=200)
+    nombre_equipo = models.CharField(max_length=200)
     nombre_usuario = models.CharField(max_length=50)
     numero_tag = models.CharField(max_length=100, blank=True)
     # portatil o escritorio

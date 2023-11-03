@@ -39,8 +39,8 @@ class EncuestaForm(forms.ModelForm):
     otros = forms.CharField(label="Otros software que necesiten licencia (Opcional)", required=False, max_length=100, widget=forms.widgets.TextInput(attrs={"placeholder": "Adobe Photoshop, Adobe Premiere", "class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
 
 
-    nombre_equpo = forms.CharField(max_length=200, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
-    nombre_usuario = forms.CharField(max_length=50, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
+    nombre_equipo = forms.CharField(max_length=200, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
+    nombre_usuario = forms.CharField(label="Login del usuario", max_length=50, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
     numero_tag = forms.CharField(label="Número de tag (Opcional)", max_length=100, required=False, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
     # portatil o escritorio
 
@@ -50,7 +50,7 @@ class EncuestaForm(forms.ModelForm):
 
     class Meta:
         model = Encuesta
-        fields = ('software_libre', 'estandares_abiertos', 'ofimatica', 'sistema_operativo', 'descripcion_caracteristicas', 'otros', 'nombre_equpo', 'nombre_usuario',
+        fields = ('software_libre', 'estandares_abiertos', 'ofimatica', 'sistema_operativo', 'descripcion_caracteristicas', 'otros', 'nombre_equipo', 'nombre_usuario',
                   'numero_tag', 'portatil_escritorio', 'dominio', 'antivirus') 
 
 class EdificioForm(forms.ModelForm):
