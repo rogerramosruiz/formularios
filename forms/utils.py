@@ -23,7 +23,7 @@ def logger(request, usuario, accion, messagedb, messagetxt):
 def log_db(ip, loged_user, usuario, accion, message):
     log = Log()
     log.user = loged_user
-    log.usuarrio = usuario
+    log.usuario = usuario
     log.ip = ip
     log.accion = accion
     log.descripcion = message

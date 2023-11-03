@@ -4,6 +4,9 @@ from .forms import UsuarioForm, DispositivoForm, EncuestaForm, EdificioForm
 from django.contrib.auth.decorators import login_required
 from .utils import logger
 import copy
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse
+
 
 
 # Create your views here.
@@ -122,6 +125,18 @@ def addEdifcio(request):
 
 @login_required
 def show_log(request):
+    items_per_page = 10
     loged_user = request.user
     logs = Log.objects.filter(user = loged_user)
-    return render(request, "logs.html", context={"logs": logs})
+    paginator = Paginator(logs, items_per_page)
+    page = request.GET.get('page')
+    try:
+        current_page = paginator.get_page(page)
+    except PageNotAnInteger:
+        current_page = paginator.get_page(1)
+    except EmptyPage:
+        current_page = paginator.get_page(paginator.num_pages)
+    
+    return render(request, 'logs.html', {'current_page': current_page})
+
+    #return render(request, "logs.html", context={"logs": logs})
