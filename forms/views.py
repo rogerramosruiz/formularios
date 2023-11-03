@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from .utils import logger
 import copy
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponse
 
 
 
