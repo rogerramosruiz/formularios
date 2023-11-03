@@ -41,7 +41,7 @@ class EncuestaForm(forms.ModelForm):
 
     nombre_equpo = forms.CharField(max_length=200, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
     nombre_usuario = forms.CharField(max_length=50, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
-    numero_tag = forms.CharField(max_length=100, required=False, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
+    numero_tag = forms.CharField(label="Número de tag (Opcional)", max_length=100, required=False, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
     # portatil o escritorio
 
     portatil_escritorio = forms.ChoiceField(label="Tipo de dispositivo",widget=forms.RadioSelect() ,choices=(("PORTATIL", "Portátil"),("ESCCRITORIO", "Escritorio") ))
