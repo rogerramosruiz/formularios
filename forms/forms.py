@@ -37,10 +37,21 @@ class EncuestaForm(forms.ModelForm):
 
     descripcion_caracteristicas = forms.CharField(label="Descripción y características (Opcional)", required=False, max_length=500, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))    
     otros = forms.CharField(label="Otros software que necesiten licencia (Opcional)", required=False, max_length=100, widget=forms.widgets.TextInput(attrs={"placeholder": "Adobe Photoshop, Adobe Premiere", "class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
-    
+
+
+    nombre_equpo = forms.CharField(max_length=200, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
+    nombre_usuario = forms.CharField(max_length=50, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
+    numero_tag = forms.CharField(max_length=100, required=False, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
+    # portatil o escritorio
+
+    portatil_escritorio = forms.ChoiceField(label="Tipo de dispositivo",widget=forms.RadioSelect() ,choices=(("PORTATIL", "Portátil"),("ESCCRITORIO", "Escritorio") ))
+    dominio = forms.BooleanField(widget=forms.widgets.CheckboxInput(attrs={"class": "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"}), required=False)
+    antivirus = forms.BooleanField(widget=forms.widgets.CheckboxInput(attrs={"class": "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"}), required=False)
+
     class Meta:
         model = Encuesta
-        fields = ('software_libre', 'estandares_abiertos', 'ofimatica', 'sistema_operativo', 'descripcion_caracteristicas', 'otros') 
+        fields = ('software_libre', 'estandares_abiertos', 'ofimatica', 'sistema_operativo', 'descripcion_caracteristicas', 'otros', 'nombre_equpo', 'nombre_usuario',
+                  'numero_tag', 'portatil_escritorio', 'dominio', 'antivirus') 
 
 class EdificioForm(forms.ModelForm):
     nombre = forms.CharField(max_length=50, widget=forms.widgets.TextInput(attrs={"class": "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700"}))
