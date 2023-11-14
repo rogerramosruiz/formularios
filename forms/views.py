@@ -9,6 +9,9 @@ from django.db import connection
 from django.http import HttpResponse
 from openpyxl import Workbook
 
+from django.contrib.auth.decorators import user_passes_test
+from .templatetags.custom_filter import can_download
+
 # Create your views here.
 @login_required()
 def listar_personal(request):
@@ -140,6 +143,8 @@ def show_log(request):
     return render(request, 'logs.html', {'current_page': current_page})
 
 @login_required
+@user_passes_test(can_download)
+
 def generate_excel(request):
     workbook = Workbook()
     worksheet = workbook.active

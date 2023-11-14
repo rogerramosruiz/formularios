@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-{% load static %}    
+{% load static %}
+{% load custom_filter %}
 <html lang="en">
 
 <head>
@@ -14,23 +15,26 @@
     <img src='{% static "images/msdh.png" %}' style="height:80px;">
     <div class="dark:bg-gray-800 text-white py-2">
         <div class="container mx-auto flex justify-end">
-            <a href="{%url 'excel' %}" class="px-5">
-                <button class="bg-[#2fa96e] hover:bg-[#1c915a] text-white font-bold py-2 px-4 rounded">
-                    Generar Excel
-                </button>
-            </a>
-
+            
             {% if request.path == "/" %}
-            <a href="{%url 'progreso' %}" class="px-5">
+            {% if user|can_download %}                
+            <a href="{%url 'excel' %}" class="px-2">
+                    <button class="bg-[#2fa96e] hover:bg-[#1c915a] text-white font-bold py-2 px-4 rounded">
+                        Generar Excel
+                    </button>
+            </a>             
+            {% endif %}
+
+            <a href="{%url 'progreso' %}" class="px-2">
                 <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded">
                     Progreso
                 </button>
-            </a>
+            </a>            
             {% endif %}
 
             <a href="{% url 'logout' %}"> <Button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                 Cerrar Secion</Button></a>
-        </div>
+            </div>
       </div>
     {% endif %}
 
