@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect
-from .models import Usuario, Dispositivo, Edificio, Log
-from .forms import UsuarioForm, DispositivoForm, EncuestaForm, EdificioForm
-from django.contrib.auth.decorators import login_required
-from .utils import logger
-import copy
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import connection
 from django.http import HttpResponse
-from openpyxl import Workbook
 
-from django.contrib.auth.decorators import user_passes_test
+from .models import Usuario, Dispositivo, Edificio, Log
+from .forms import UsuarioForm, DispositivoForm, EncuestaForm, EdificioForm
+from .utils import logger
 from .templatetags.custom_filter import can_download
+
+from openpyxl import Workbook
+import copy
 
 # Create your views here.
 @login_required()

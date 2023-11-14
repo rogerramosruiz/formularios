@@ -1,6 +1,7 @@
 import logging
-from .models import Log
 from datetime import datetime
+
+from .models import Log
 
 logging.basicConfig(filename='logs.log', encoding='utf-8', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
