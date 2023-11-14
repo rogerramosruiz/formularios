@@ -5,8 +5,9 @@ from django.contrib.auth.decorators import login_required
 from .utils import logger
 import copy
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
-
+from django.db import connection
+from django.http import HttpResponse
+from openpyxl import Workbook
 
 # Create your views here.
 @login_required()
@@ -137,3 +138,22 @@ def show_log(request):
         current_page = paginator.get_page(paginator.num_pages)
     
     return render(request, 'logs.html', {'current_page': current_page})
+
+@login_required
+def generate_excel(request):
+    workbook = Workbook()
+    worksheet = workbook.active
+    with connection.cursor() as cursor:
+        cursor.execute('SELECT * FROM datos_encuesta')
+        results = cursor.fetchall()
+        headers = [i[0] for i in cursor.description]
+        worksheet.append(headers)
+        for i in results:
+            worksheet.append(i)
+
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=usuarios encuestados.xlsx'
+
+    # Save the workbook to the response
+    workbook.save(response)
+    return response

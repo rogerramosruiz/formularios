@@ -10,5 +10,5 @@ urlpatterns = [
     path('encuesta/<int:pk>', views.encuesta, name='encuesta'),
     path('edificio/', views.addEdifcio, name='edificio'),
     path('progreso/', views.show_log, name='progreso'),
-
+    path('generar_excel/', views.generate_excel, name='excel')
 ]

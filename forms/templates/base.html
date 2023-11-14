@@ -12,8 +12,14 @@
 <body class="m-0 lg:m-2">
     {% if user.is_authenticated %}
     <img src='{% static "images/msdh.png" %}' style="height:80px;">
-    <div class="dark:bg-gray-800 text-white">
+    <div class="dark:bg-gray-800 text-white py-2">
         <div class="container mx-auto flex justify-end">
+            <a href="{%url 'excel' %}" class="px-5">
+                <button class="bg-[#2fa96e] hover:bg-[#1c915a] text-white font-bold py-2 px-4 rounded">
+                    Generar Excel
+                </button>
+            </a>
+
             {% if request.path == "/" %}
             <a href="{%url 'progreso' %}" class="px-5">
                 <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded">
