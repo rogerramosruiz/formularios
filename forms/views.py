@@ -4,13 +4,28 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import connection
 from django.http import HttpResponse
 
-from .models import Usuario, Dispositivo, Edificio, Log
+from .models import Usuario, Dispositivo, Edificio, Log, Encuesta
 from .forms import UsuarioForm, DispositivoForm, EncuestaForm, EdificioForm
 from .utils import logger
 from .templatetags.custom_filter import can_download
 
 from openpyxl import Workbook
 import copy
+
+def avanse():
+    nro_encuestados = Encuesta.objects.count()
+    total_personas = Usuario.objects.count()
+    progress = int((nro_encuestados / total_personas) * 100)
+    progres_color = 'bg-green-500'
+    if progress < 20:
+        progres_color = 'bg-red-500'
+    elif progress < 40:
+        progres_color = 'bg-orange-500'
+    elif progress < 60:
+        progres_color = 'bg-yellow-500'
+    elif progress < 90:
+        progres_color = 'bg-lime-500'
+    return nro_encuestados, total_personas, progress,progres_color
 
 # Create your views here.
 @login_required()
@@ -22,6 +37,8 @@ def listar_personal(request):
         usuarios = Usuario.objects.filter(nombre__icontains=query)
     usuarios = usuarios[0:20]
     usuarios_dic = []
+    nro_encuestados, total_personas, progress, progres_color = avanse()
+    
     for i in usuarios:
         data = {}
         data['id'] = i.id
@@ -35,7 +52,7 @@ def listar_personal(request):
         data['numdisp'] = len(i.dispositivos.all())
         usuarios_dic.append(data)
 
-    return render(request, 'listar_u.html', context={'usuarios': usuarios_dic})
+    return render(request, 'listar_u.html', context={'usuarios': usuarios_dic, 'encuestados': nro_encuestados, 'total_personas': total_personas, 'avansado': progress, 'progres_color': progres_color})
 
 @login_required()
 def editar_usuario(request, pk):
